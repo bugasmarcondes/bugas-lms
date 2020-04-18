@@ -50,6 +50,7 @@ function CoursesManagement({ actions, history }) {
 //     }
 // }
 
+// bindActionCreators, to save us from having manually wrap our action creators in a dispatch call
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(courseActions, dispatch),

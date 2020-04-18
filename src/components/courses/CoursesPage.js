@@ -1,13 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import * as courseActions from "../../redux/actions/courseActions";
 
-function CoursesPage({ courses }) {
-  const courseList = courses.map((c) => (
-    <tr key={c.id}>
-      <td>{c.title}</td>
-    </tr>
-  ));
+function CoursesPage({ courses, actions }) {
+  const courseList =
+    courses && courses.length > 0 ? (
+      courses.map((c) => (
+        <tr key={c.id}>
+          <td>{c.title}</td>
+          <td>
+            <button
+              className="btn waves-effect waves-light"
+              onClick={() => handleDelete(c.id)}
+            >
+              Remove
+              <i className="material-icons right">delete</i>
+            </button>
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td>No courses yet!</td>
+      </tr>
+    );
+
+  function handleDelete(id) {
+    actions.deleteCourse(id);
+  }
 
   return (
     <>
@@ -30,6 +52,7 @@ function CoursesPage({ courses }) {
         <thead>
           <tr>
             <th>Name</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{courseList}</tbody>
@@ -44,4 +67,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CoursesPage);
+// bindActionCreators, to save us from having manually wrap our action creators in a dispatch call
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(courseActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);

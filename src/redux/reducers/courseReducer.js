@@ -8,6 +8,11 @@ export default function courseReducer(state = initialState.courses, action) {
     //   return action.courses;
     case types.CREATE_COURSE:
       return [...state, action.course];
+    case types.DELETE_COURSE:
+      let courseList = state.filter((course) => {
+        return course.id !== action.id;
+      });
+      return courseList;
     default:
       return state;
   }

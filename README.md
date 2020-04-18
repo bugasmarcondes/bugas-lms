@@ -50,3 +50,15 @@ Steps for writing into the store:
     - /src/redux/reducers/courseReducer.js
 5. Connect component to redux
     - /src/components/courses/CoursesManagement.js
+
+Steps for deleting from the store:
+
+1. Insert button to dispatch delete action
+    - /src/components/courses/CoursesPage.js
+2. Adding action type and action creator
+    - /src/redux/actions/actionTypes.js
+    - /src/redux/actions/courseActions.js
+3. Dealing with reducer to return new state
+    - /src/redux/reducers/courseReducer.js
+4. Connect component to redux
+    - /src/components/courses/CoursesPage.js
