@@ -35,3 +35,18 @@ Steps for reading courses from the store:
     - /src/index.js
 6. connect component to redux
     - /src/components/courses/CoursesPage.js
+
+Steps for writing into the store:
+
+1. Creating route, link and component to deal with course management
+    - /src/components/App.js
+    - /src/components/courses/CoursesPage.js
+2. Creating component for course management (add and edit)
+    - /src/components/courses/CoursesManagement.js
+3. Adding action type and action creator
+    - /src/redux/actions/actionTypes.js
+    - /src/redux/actions/courseActions.js
+4. Dealing with reducer to return new state
+    - /src/redux/reducers/courseReducer.js
+5. Connect component to redux
+    - /src/components/courses/CoursesManagement.js
