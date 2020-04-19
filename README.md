@@ -142,3 +142,11 @@ Steps for saving using API:
             ),
             actions: PropTypes.object.isRequired,
         };</code></pre>
+
+## 6 (testing)
+
+- Test if Jest is working as expected
+    - /src/index.test.js
+- Testing a presentational component
+    - yarn add -D react-test-renderer
+    - /src/components/courses/CourseList.test.js

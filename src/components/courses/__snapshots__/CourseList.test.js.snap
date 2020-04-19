@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check if message is displayed when no courses are listed yet 1`] = `
+<table
+  className="striped responsive-table centered"
+>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th />
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        No courses yet!
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

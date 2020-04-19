@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const CourseList = ({ courses, handleDelete }) => (
   <table className="striped responsive-table centered">
@@ -14,7 +13,7 @@ const CourseList = ({ courses, handleDelete }) => (
         courses.map((c) => (
           <tr key={c.id}>
             <td>
-              <Link to={"/course/" + c.id}>{c.title}</Link>
+              <a href={"/course/" + c.id}>{c.title}</a>
             </td>
             <td>
               <button
