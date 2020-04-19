@@ -12,14 +12,14 @@ function CoursesManagement({ actions, history, ...props }) {
   useEffect(() => {
     if (props.course === null) {
       history.push("/404");
-    } else {
+    } else if (props.match.params.id && props.course.id === null) {
       actions
         .loadCourses()
         .catch((error) => alert("Loading courses failed " + error));
     }
 
     setCourse(props.course);
-  }, []);
+  }, [props.course]);
 
   function handleSubmit(e) {
     e.preventDefault();
