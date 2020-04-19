@@ -62,3 +62,24 @@ Steps for deleting from the store:
     - /src/redux/reducers/courseReducer.js
 4. Connect component to redux
     - /src/components/courses/CoursesPage.js
+
+Steps for editing courses from the store:
+
+1. Creating route and link to management route (edit)
+    - /src/components/courses/CoursesPage.js
+    - /src/components/App.js
+2. /src/components/courses/CoursesManagement.js
+    - implement validation to check action type (add or edit) when loading course
+    - alter submit to check action type (add or edit) when submiting a course
+3. Installing thunk, to allow us return a function in action creators
+    - yarn add redux-thunk
+4. Aplying thunk middleware into the stores
+    - /src/redux/store/configureStore.dev.js
+    - /src/redux/store/configureStore.prod.js
+5. Adding action type and action creator
+    - /src/redux/actions/actionTypes.js
+    - /src/redux/actions/courseActions.js
+6. Dealing with reducer to return new state
+    - /src/redux/reducers/courseReducer.js
+7. If not done already, connect component to redux
+    - /src/components/courses/CoursesManagement.js

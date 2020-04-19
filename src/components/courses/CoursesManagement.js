@@ -1,23 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import { bindActionCreators } from "redux";
 
-function CoursesManagement({ actions, history }) {
-  const [course, setCourse] = useState({
-    title: "",
-  });
+function CoursesManagement({ actions, history, ...props }) {
+  const [course, setCourse] = useState(props.course);
+
+  useEffect(() => {
+    if (props.course === null) {
+      history.push("/404");
+    }
+
+    setCourse(props.course);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    actions.createCourse(course);
+    actions.saveCourse(course);
+
     history.push("/courses");
   }
 
   function handleChange(e) {
     setCourse({
-      id: Math.random().toString(),
+      ...course,
       [e.target.id]: e.target.value,
     });
   }
@@ -43,6 +50,23 @@ function CoursesManagement({ actions, history }) {
   );
 }
 
+function mapStateToProps(state, ownProps) {
+  let courseId = ownProps.match.params.id;
+
+  if (courseId) {
+    var course = state.courses.find((course) => course.id === courseId) || null;
+  } else {
+    var course = {
+      id: null,
+      title: "",
+    };
+  }
+
+  return {
+    course,
+  };
+}
+
 // OLD WAY, VERBOSE WAY
 // function mapDispatchToProps(dispatch) {
 //     return {
@@ -57,4 +81,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(CoursesManagement);
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesManagement);

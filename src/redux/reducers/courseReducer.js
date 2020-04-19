@@ -13,6 +13,10 @@ export default function courseReducer(state = initialState.courses, action) {
         return course.id !== action.id;
       });
       return courseList;
+    case types.UPDATE_COURSE:
+      return state.map((course) => {
+        return course.id === action.course.id ? action.course : course;
+      });
     default:
       return state;
   }

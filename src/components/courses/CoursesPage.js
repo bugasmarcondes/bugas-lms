@@ -9,7 +9,9 @@ function CoursesPage({ courses, actions }) {
     courses && courses.length > 0 ? (
       courses.map((c) => (
         <tr key={c.id}>
-          <td>{c.title}</td>
+          <td>
+            <Link to={"/course/" + c.id}>{c.title}</Link>
+          </td>
           <td>
             <button
               className="btn waves-effect waves-light"
