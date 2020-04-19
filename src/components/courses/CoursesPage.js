@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import * as courseActions from "../../redux/actions/courseActions";
+import PropTypes from "prop-types";
 
 function CoursesPage({ courses, actions }) {
   const courseList =
@@ -62,6 +63,16 @@ function CoursesPage({ courses, actions }) {
     </>
   );
 }
+
+CoursesPage.propTypes = {
+  courses: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+  actions: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

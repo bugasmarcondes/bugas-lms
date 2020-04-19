@@ -98,3 +98,18 @@ Steps for editing courses from the store:
 3. Copy /api to /tools/api
     - change baseUrl inside files
 4. yarn start
+
+## 5 (prop-types)
+
+- yarn add prop-types
+- Adding runtime type checking for React props
+    - /src/components/courses/CoursesPage.js
+        <pre><code>CoursesPage.propTypes = {
+            courses: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    title: PropTypes.string.isRequired,
+                })
+            ),
+            actions: PropTypes.object.isRequired,
+        };</code></pre>
