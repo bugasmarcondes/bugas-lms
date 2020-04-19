@@ -8,12 +8,9 @@ import CourseList from "./CourseList";
 
 function CoursesPage({ courses, actions }) {
   useEffect(() => {
-    // check if courses are empty, to prevent from loading everytime we hit f5
-    if (courses.length === 0) {
-      actions
-        .loadCourses()
-        .catch((error) => alert("Loading courses failed " + error));
-    }
+    actions
+      .loadCourses()
+      .catch((error) => alert("Loading courses failed " + error));
   }, []);
 
   function handleDelete(id) {

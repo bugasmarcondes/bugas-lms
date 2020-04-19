@@ -34,12 +34,15 @@ export function loadCourses() {
 
 export function saveCourse(course) {
   return function (dispatch, getstate) {
-    if (course.id) {
-      return dispatch(updateCourse(course));
-    } else {
-      // in a real scenario, we would call an api, and it would handle the id creation
-      course.id = Math.random().toString();
-      return dispatch(createCourse(course));
-    }
+    return api
+      .saveCourse(course)
+      .then((savedCourse) => {
+        savedCourse.id
+          ? dispatch(updateCourse(savedCourse))
+          : dispatch(createCourse(savedCourse));
+      })
+      .catch((error) => {
+        throw error;
+      });
   };
 }

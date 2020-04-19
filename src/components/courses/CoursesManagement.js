@@ -3,12 +3,19 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import { bindActionCreators } from "redux";
 
+// tried to use it as a blueprint of our object, but create-react-app wouldn't allow me to import outside of /src
+// import { newCourse } from "../../../mock/mockData";
+
 function CoursesManagement({ actions, history, ...props }) {
   const [course, setCourse] = useState(props.course);
 
   useEffect(() => {
     if (props.course === null) {
       history.push("/404");
+    } else {
+      actions
+        .loadCourses()
+        .catch((error) => alert("Loading courses failed " + error));
     }
 
     setCourse(props.course);
@@ -53,8 +60,9 @@ function CoursesManagement({ actions, history, ...props }) {
 function mapStateToProps(state, ownProps) {
   let courseId = ownProps.match.params.id;
 
-  if (courseId) {
-    var course = state.courses.find((course) => course.id === courseId) || null;
+  if (courseId && state.courses.length > 0) {
+    var course =
+      state.courses.find((course) => course.id === parseInt(courseId)) || null;
   } else {
     var course = {
       id: null,

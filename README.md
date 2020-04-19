@@ -19,6 +19,8 @@
 - yarn add -D redux-immutable-state-invariant
     - Responsible for warning if we mutate Redux state
 
+### <u>Synchronous steps</u>
+
 Steps for reading courses from the store:
 
 1. /src/components/courses/CoursesPage.js
@@ -88,7 +90,7 @@ Steps for editing courses from the store:
 7. If not done already, connect component to redux
     - /src/components/courses/CoursesManagement.js
 
-<hr />
+### <u>Asynchronous steps</u>
 
 Steps for reading courses from the API:
 
@@ -99,6 +101,17 @@ Steps for reading courses from the API:
     - /src/redux/reducers/courseReducer.js
 3. Consume loadCourses() action
     - /src/components/courses/CoursesPage.js
+
+Steps for saving using API:
+
+1. /mock/apiServer.js
+    - Removing author server side validation
+2. /src/components/courses/CoursesManagement.js
+    - Calling API to retrieve all courses
+3. /src/redux/actions/courseActions.js
+    - Calling API inside action
+4. /src/components/courses/CoursesPage.js
+    - Removing validation, so that our new course appears after saving
 
 ## 4 (mock api)
 
