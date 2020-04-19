@@ -83,3 +83,18 @@ Steps for editing courses from the store:
     - /src/redux/reducers/courseReducer.js
 7. If not done already, connect component to redux
     - /src/components/courses/CoursesManagement.js
+
+## 4 (mock api)
+
+1. Copy /tools to /tools/mock
+    - yarn add -D json-server
+2. Edit scripts into package.json
+    - prestart:api
+    - start:api
+        - to test, run yarn run start:api
+    - rename start to start:default
+    - create a new start
+        - yarn add -D npm-run-all
+3. Copy /api to /tools/api
+    - change baseUrl inside files
+4. yarn start
