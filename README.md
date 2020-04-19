@@ -88,9 +88,15 @@ Steps for editing courses from the store:
 7. If not done already, connect component to redux
     - /src/components/courses/CoursesManagement.js
 
+<hr />
+
+Steps for reading courses from the API:
+
+1. 
+
 ## 4 (mock api)
 
-1. Copy /tools to /tools/mock
+1. Copy /tools to /mock
     - yarn add -D json-server
 2. Edit scripts into package.json
     - prestart:api
@@ -99,7 +105,7 @@ Steps for editing courses from the store:
     - rename start to start:default
     - create a new start
         - yarn add -D npm-run-all
-3. Copy /api to /tools/api
+3. Copy /api to /src/api
     - change baseUrl inside files
 4. yarn start
 

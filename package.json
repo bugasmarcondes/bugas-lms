@@ -17,8 +17,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "prestart:api": "node tools/mock/createMockDb.js",
-    "start:api": "node tools/mock/apiServer.js",
+    "prestart:api": "node mock/createMockDb.js",
+    "start:api": "node mock/apiServer.js",
     "start:default": "react-scripts start",
     "start": "run-p start:default start:api",
     "build": "react-scripts build",
