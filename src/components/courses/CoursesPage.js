@@ -4,37 +4,17 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import PropTypes from "prop-types";
+import CourseList from "./CourseList";
 
 function CoursesPage({ courses, actions }) {
   useEffect(() => {
-    actions
-      .loadCourses()
-      .catch((error) => alert("Loading courses failed " + error));
+    // check if courses are empty, to prevent from loading everytime we hit f5
+    if (courses.length === 0) {
+      actions
+        .loadCourses()
+        .catch((error) => alert("Loading courses failed " + error));
+    }
   }, []);
-
-  const courseList =
-    courses && courses.length > 0 ? (
-      courses.map((c) => (
-        <tr key={c.id}>
-          <td>
-            <Link to={"/course/" + c.id}>{c.title}</Link>
-          </td>
-          <td>
-            <button
-              className="btn waves-effect waves-light"
-              onClick={() => handleDelete(c.id)}
-            >
-              Remove
-              <i className="material-icons right">delete</i>
-            </button>
-          </td>
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td>No courses yet!</td>
-      </tr>
-    );
 
   function handleDelete(id) {
     actions.deleteCourse(id);
@@ -57,15 +37,7 @@ function CoursesPage({ courses, actions }) {
           <i className="material-icons">add</i>
         </Link>
       </p>
-      <table className="striped responsive-table centered">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>{courseList}</tbody>
-      </table>
+      <CourseList courses={courses} handleDelete={handleDelete} />
     </>
   );
 }
