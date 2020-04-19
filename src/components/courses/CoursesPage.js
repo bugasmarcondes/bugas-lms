@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
@@ -6,6 +6,12 @@ import * as courseActions from "../../redux/actions/courseActions";
 import PropTypes from "prop-types";
 
 function CoursesPage({ courses, actions }) {
+  useEffect(() => {
+    actions
+      .loadCourses()
+      .catch((error) => alert("Loading courses failed " + error));
+  }, []);
+
   const courseList =
     courses && courses.length > 0 ? (
       courses.map((c) => (
@@ -65,12 +71,7 @@ function CoursesPage({ courses, actions }) {
 }
 
 CoursesPage.propTypes = {
-  courses: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ),
+  courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 

@@ -92,7 +92,13 @@ Steps for editing courses from the store:
 
 Steps for reading courses from the API:
 
-1. 
+1. Handle actions for calling the API and also dispatching an action on Success or Failure
+    - /src/redux/actions/actionTypes.js
+    - /src/redux/actions/courseActions.js
+2. Return the new state
+    - /src/redux/reducers/courseReducer.js
+3. Consume loadCourses() action
+    - /src/components/courses/CoursesPage.js
 
 ## 4 (mock api)
 

@@ -1,8 +1,10 @@
 import * as types from "./actionTypes";
+import * as api from "../../api/courseApi";
 
-// export function loadCoursesSuccess(courses) {
-//   return { type: types.LOAD_COURSES_SUCCESS, courses };
-// }
+// actions
+export function loadCoursesSuccess(courses) {
+  return { type: types.LOAD_COURSES_SUCCESS, courses };
+}
 
 export function createCourse(course) {
   return { type: types.CREATE_COURSE, course };
@@ -14,6 +16,20 @@ export function deleteCourse(id) {
 
 export function updateCourse(course) {
   return { type: types.UPDATE_COURSE, course };
+}
+
+// thunks
+export function loadCourses() {
+  return function (dispatch, getState) {
+    return api
+      .getCourses()
+      .then((courses) => {
+        dispatch(loadCoursesSuccess(courses));
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
 }
 
 export function saveCourse(course) {
