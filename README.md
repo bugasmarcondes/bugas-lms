@@ -15,6 +15,10 @@
 
 ## 3 (redux)
 
+- Enabling Redux DevTools
+- yarn add -D redux-immutable-state-invariant
+    - Responsible for warning if we mutate Redux state
+
 Steps for reading courses from the store:
 
 1. /src/components/courses/CoursesPage.js
